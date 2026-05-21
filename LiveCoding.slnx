@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LiveCoding.Application/LiveCoding.Application.csproj" Id="23acefef-79a8-4167-9ae5-db85767e7287" />
+    <Project Path="src/LiveCoding.Domain/LiveCoding.Domain.csproj" Id="cd7f43c8-42df-49ee-a893-1834a9400534" />
+    <Project Path="src/LiveCoding.Infrastructure/LiveCoding.Infrastructure.csproj" Id="6313911c-398f-446e-b0a1-255b4ad8ddbc" />
+    <Project Path="src/LiveCoding.WebApi/LiveCoding.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LiveCoding.UnitTests/LiveCoding.UnitTests.csproj" Id="de63e3db-ba74-40a4-94c8-62ee4322b27e" />
+  </Folder>
+</Solution>

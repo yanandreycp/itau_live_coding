@@ -1,0 +1,15 @@
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\bin\Debug\net8.0\LiveCoding.Application.deps.json
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\bin\Debug\net8.0\LiveCoding.Application.dll
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\bin\Debug\net8.0\LiveCoding.Application.pdb
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.AssemblyInfoInputs.cache
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.AssemblyInfo.cs
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.csproj.CoreCompileInputs.cache
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.dll
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\refint\LiveCoding.Application.dll
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.pdb
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\ref\LiveCoding.Application.dll
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\bin\Debug\net8.0\LiveCoding.Domain.dll
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\bin\Debug\net8.0\LiveCoding.Domain.pdb
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCoding.Application.csproj.AssemblyReference.cache
+C:\Users\yanan\OneDrive\Documentos\Projects\LiveCoding\src\LiveCoding.Application\obj\Debug\net8.0\LiveCodi.B4B79BF7.Up2Date

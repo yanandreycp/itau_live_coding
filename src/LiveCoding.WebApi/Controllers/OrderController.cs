@@ -10,23 +10,22 @@ namespace LiveCoding.WebApi.Controllers
         IGetOrderUseCase getOrderUseCase,
         ICreateOrderUseCase createOrderUseCase,
         IChangeProductQuantityUseCase changeProductQuantityUseCase,
-        IRemoveOrderProductUseCase removeOrderProductUseCase) : Controller
+        IRemoveOrderProductUseCase removeOrderProductUseCase) : UseCaseControllerBase
     {
 
         [HttpGet("orders/{id}")]
         public async Task<IActionResult> GetOrder([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var input = new GetOrderInput { Id = id };
-
             var response = await getOrderUseCase.ExecuteAsync(input, cancellationToken);
-            return Ok(response);
+            return GetActionResult(response);
         }
 
         [HttpPost("orders")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderInput input, CancellationToken cancellationToken)
         {
             var response = await createOrderUseCase.ExecuteAsync(input, cancellationToken);
-            return Ok(response);
+            return GetActionResult(response);
         }
 
         [HttpPut("orders/{orderId}/items/{itemId}")]
@@ -41,7 +40,7 @@ namespace LiveCoding.WebApi.Controllers
             };
 
             var response = await changeProductQuantityUseCase.ExecuteAsync(input, cancellationToken);
-            return Ok(response);
+            return GetActionResult(response);
         }
 
         [HttpDelete("orders/{orderId}/items/{itemId}")]
@@ -52,7 +51,7 @@ namespace LiveCoding.WebApi.Controllers
         {
             var input = new RemoveOrderProductInput(orderId, itemId);
             var response = await removeOrderProductUseCase.ExecuteAsync(input, cancellationToken);
-            return Ok(response);
+            return GetActionResult(response);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace LiveCoding.Application.UseCases.GetOrder
+﻿using LiveCoding.Application.Generics;
+
+namespace LiveCoding.Application.UseCases.GetOrder
 {
     public interface IGetOrderUseCase
     {
-        Task<GetOrderOutput> ExecuteAsync(GetOrderInput input, CancellationToken cancellationToken);
+        Task<Response<GetOrderOutput>> ExecuteAsync(GetOrderInput input, CancellationToken cancellationToken);
     }
 }

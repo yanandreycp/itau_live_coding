@@ -1,4 +1,5 @@
 using LiveCoding.Application.Extensions.Mapping;
+using LiveCoding.Application.Generics;
 using LiveCoding.Application.Interfaces;
 using LiveCoding.Application.UseCases.ChangeProductQuantity;
 using LiveCoding.Application.UseCases.CreateOrder;
@@ -10,63 +11,102 @@ namespace LiveCoding.Application.Services
 {
     public class OrderService(IOrderRepository orderRepository) : IOrderService
     {
-        public async Task<GetOrderOutput> GetOrderAsync(Guid orderId, CancellationToken cancellationToken)
+        public async Task<Response<GetOrderOutput>> GetOrderAsync(Guid orderId, CancellationToken cancellationToken)
         {
-            var order = await orderRepository.GetOrderAsync(orderId, cancellationToken);
-            if (order == null) throw new Exception("Order not found");
-
-            return order.ToGetOrderOutput();
-        }
-
-        public async Task<CreateOrderOutput> CreateOrderAsync(CreateOrderInput input, CancellationToken cancellationToken)
-        {
-            var order = input.ToOrder();
-            order.CalculateOrderEffectivePrice();
-
-            await orderRepository.SaveOrderAsync(order, cancellationToken);
-
-            var createdOrder = await orderRepository.GetOrderAsync(order.Id, cancellationToken);
-            return createdOrder.ToCreateOrderOutput();
-        }
-
-        public async Task<ChangeProductQuantityOutput> ChangeProductQuantityAsync(ChangeProductQuantityInput input, CancellationToken cancellationToken)
-        {
-            var order = await orderRepository.GetOrderAsync(input.OrderId, cancellationToken);
-            if (order == null) throw new Exception("Order not found");
-
-            var existingProduct = order.Products?.FirstOrDefault(x => x.Id == input.ProductId);
-            if (existingProduct != null)
+            try
             {
-                existingProduct.Quantity = input.Quantity;
+                var order = await orderRepository.GetOrderAsync(orderId, cancellationToken);
+                if (order == null) return new Response<GetOrderOutput>(true);
+
+                var response = order.ToGetOrderOutput();
+                return new Response<GetOrderOutput>(true, response);
             }
-
-            order.CalculateOrderEffectivePrice();
-            order.UpdatedAt = DateTime.UtcNow;
-
-            await orderRepository.UpdateOrderAsync(order, cancellationToken);
-
-            var updatedOrder = await orderRepository.GetOrderAsync(order.Id, cancellationToken);
-            return updatedOrder.ToChangeProductQuantityOutput();
+            catch (Exception ex)
+            {
+                return new Response<GetOrderOutput>(false)
+                    .AddError(ex.Message);
+            }
         }
 
-        public async Task<RemoveOrderProductOutput> RemoveOrderProductAsync(RemoveOrderProductInput input, CancellationToken cancellationToken)
+        public async Task<Response<CreateOrderOutput>> CreateOrderAsync(CreateOrderInput input, CancellationToken cancellationToken)
         {
-            var order = await orderRepository.GetOrderAsync(input.OrderId, cancellationToken);
-            if (order == null) throw new Exception("Order not found");
-
-            var existingProduct = order.Products?.FirstOrDefault(x => x.Id == input.ProductId);
-            if (existingProduct != null)
+            try
             {
-                order.Products?.Remove(existingProduct);
+                var order = input.ToOrder();
+                order.CalculateOrderEffectivePrice();
+
+                await orderRepository.SaveOrderAsync(order, cancellationToken);
+
+                var createdOrder = await orderRepository.GetOrderAsync(order.Id, cancellationToken);
+                var response = createdOrder.ToCreateOrderOutput();
+
+                return new Response<CreateOrderOutput>(true, response);
             }
+            catch (Exception ex)
+            {
+                return new Response<CreateOrderOutput>(false)
+                    .AddError(ex.Message);
+            }
+        }
 
-            order.CalculateOrderEffectivePrice();
-            order.UpdatedAt = DateTime.UtcNow;
+        public async Task<Response<ChangeProductQuantityOutput>> ChangeProductQuantityAsync(ChangeProductQuantityInput input, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var order = await orderRepository.GetOrderAsync(input.OrderId, cancellationToken);
+                if (order == null) throw new Exception("Order not found");
 
-            await orderRepository.UpdateOrderAsync(order, cancellationToken);
+                var existingProduct = order.Products?.FirstOrDefault(x => x.Id == input.ProductId);
+                if (existingProduct != null)
+                {
+                    existingProduct.Quantity = input.Quantity;
+                }
 
-            var updatedOrder = await orderRepository.GetOrderAsync(order.Id, cancellationToken);
-            return updatedOrder.ToRemoveOrderProductOutput();
+                order.CalculateOrderEffectivePrice();
+                order.UpdatedAt = DateTime.UtcNow;
+
+                await orderRepository.UpdateOrderAsync(order, cancellationToken);
+
+                var updatedOrder = await orderRepository.GetOrderAsync(order.Id, cancellationToken);
+                var response = updatedOrder.ToChangeProductQuantityOutput();
+
+                return new Response<ChangeProductQuantityOutput>(true, response);
+            }
+            catch (Exception ex)
+            {
+                return new Response<ChangeProductQuantityOutput>(false)
+                    .AddError(ex.Message);
+            }
+        }
+
+        public async Task<Response<RemoveOrderProductOutput>> RemoveOrderProductAsync(RemoveOrderProductInput input, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var order = await orderRepository.GetOrderAsync(input.OrderId, cancellationToken);
+                if (order == null) throw new Exception("Order not found");
+
+                var existingProduct = order.Products?.FirstOrDefault(x => x.Id == input.ProductId);
+                if (existingProduct != null)
+                {
+                    order.Products?.Remove(existingProduct);
+                }
+
+                order.CalculateOrderEffectivePrice();
+                order.UpdatedAt = DateTime.UtcNow;
+
+                await orderRepository.UpdateOrderAsync(order, cancellationToken);
+
+                var updatedOrder = await orderRepository.GetOrderAsync(order.Id, cancellationToken);
+                var response = updatedOrder.ToRemoveOrderProductOutput();
+
+                return new Response<RemoveOrderProductOutput>(true, response);
+            }
+            catch (Exception ex)
+            {
+                return new Response<RemoveOrderProductOutput>(false)
+                    .AddError(ex.Message);
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿namespace LiveCoding.Application.UseCases.RemoveOrderProduct
+﻿using LiveCoding.Application.Generics;
+
+namespace LiveCoding.Application.UseCases.RemoveOrderProduct
 {
     public interface IRemoveOrderProductUseCase
     {
-        Task<RemoveOrderProductOutput> ExecuteAsync(RemoveOrderProductInput input, CancellationToken cancellationToken);
+        Task<Response<RemoveOrderProductOutput>> ExecuteAsync(RemoveOrderProductInput input, CancellationToken cancellationToken);
     }
 }

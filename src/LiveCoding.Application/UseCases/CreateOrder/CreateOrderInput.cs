@@ -4,9 +4,14 @@ namespace LiveCoding.Application.UseCases.CreateOrder
 {
     public class CreateOrderInput
     {
-        public Guid ProductId { get; set; }
+        public List<CreateOrderProductInput> Products { get; set; }
+        public EOrderType Type { get; set; }
+    }
+
+    public class CreateOrderProductInput
+    {
+        public string Name { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
-        public EOrderType Type { get; set; }
     }
 }

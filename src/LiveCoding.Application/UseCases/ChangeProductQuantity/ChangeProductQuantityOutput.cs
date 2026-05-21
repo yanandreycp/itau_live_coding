@@ -1,18 +1,19 @@
 ﻿using LiveCoding.Domain.Enums;
 
-namespace LiveCoding.Application.UseCases.CreateOrder
+namespace LiveCoding.Application.UseCases.ChangeProductQuantity
 {
-    public class CreateOrderOutput
+    public class ChangeProductQuantityOutput
     {
         public Guid Id { get; set; }
-        public List<CreateOrderProductOutput> Products { get; set; }
+        public List<ChangeProductQuantityProductOutput> Products { get; set; }
         public EOrderType Type { get; set; }
         public decimal InitialPrice { get; set; }
         public decimal EffectivePrice { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 
-    public class CreateOrderProductOutput
+    public class ChangeProductQuantityProductOutput
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

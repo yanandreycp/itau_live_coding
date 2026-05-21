@@ -1,7 +1,27 @@
-﻿namespace LiveCoding.Application.UseCases.GetOrder
+﻿using LiveCoding.Domain.Enums;
+
+namespace LiveCoding.Application.UseCases.GetOrder
 {
     public class GetOrderOutput
     {
         public Guid Id { get; set; }
+        public List<GetOrderProductOutput> Products { get; set; }
+        public EOrderType Type { get; set; }
+        public decimal InitialPrice { get; set; }
+        public decimal EffectivePrice { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+    }
+
+    public class GetOrderProductOutput
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public decimal OriginalUnitPrice { get; set; }
+        public decimal EffectiveUnitPrice { get; set; }
+        public decimal Rate { get; set; }
+        public decimal Delta { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

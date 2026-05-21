@@ -1,4 +1,4 @@
-using LiveCoding.Infrastructure.Entities;
+using LiveCoding.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LiveCoding.Infrastructure.Persistence

@@ -1,13 +1,12 @@
-﻿namespace LiveCoding.Application.UseCases.GetOrder
+﻿using LiveCoding.Application.Interfaces;
+
+namespace LiveCoding.Application.UseCases.GetOrder
 {
-    public class GetOrderUseCase : IGetOrderUseCase
+    public class GetOrderUseCase(IOrderService orderService) : IGetOrderUseCase
     {
-        public Task<GetOrderOutput> GetOrderAsync(GetOrderInput input, CancellationToken cancellation)
+        public async Task<GetOrderOutput> ExecuteAsync(GetOrderInput input, CancellationToken cancellationToken)
         {
-            return Task.FromResult(new GetOrderOutput()
-            {
-                Id = Guid.NewGuid()
-            });
+            return await orderService.GetOrderAsync(input.Id, cancellationToken);
         }
     }
 }

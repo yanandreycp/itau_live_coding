@@ -2,6 +2,6 @@
 {
     public interface ICreateOrderUseCase
     {
-        Task<CreateOrderOutput> CreateOrderAsync(CreateOrderInput input, CancellationToken cancellation);
+        Task<CreateOrderOutput> ExecuteAsync(CreateOrderInput input, CancellationToken cancellationToken);
     }
 }

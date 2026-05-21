@@ -1,6 +1,4 @@
-﻿using LiveCoding.Application.Repositories;
-using LiveCoding.Infrastructure.Persistence;
-using LiveCoding.Infrastructure.Repositories;
+﻿using LiveCoding.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,11 +6,15 @@ namespace LiveCoding.Infrastructure.DependencyInjection
 {
     public static class InfrastructureExtensions
     {
-        public static IServiceCollection AddInfrastructureRepositories(this IServiceCollection services)
+        public static IServiceCollection AddDbContext(this IServiceCollection services)
         {
-            services.AddDbContext<OrderDbContext>(options =>
-                options.UseSqlite("DataSource=:memory:").EnableSensitiveDataLogging());
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            var connection = new Microsoft.Data.Sqlite.SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
+            connection.Open();
+            services.AddSingleton(connection);
+
+            services.AddDbContext<OrderDbContext>((provider, options) =>
+                options.UseSqlite(connection).EnableSensitiveDataLogging());
+
             return services;
         }
     }

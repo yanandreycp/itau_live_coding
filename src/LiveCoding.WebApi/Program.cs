@@ -10,9 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureRepositories();
+builder.Services.AddDbContext();
+
 
 var app = builder.Build();
+
+LiveCoding.Infrastructure.DatabaseInitializer.EnsureDatabaseCreated(app.Services);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

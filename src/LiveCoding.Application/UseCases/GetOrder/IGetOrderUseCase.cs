@@ -2,6 +2,6 @@
 {
     public interface IGetOrderUseCase
     {
-        Task<GetOrderOutput> GetOrderAsync(GetOrderInput input, CancellationToken cancellation);
+        Task<GetOrderOutput> ExecuteAsync(GetOrderInput input, CancellationToken cancellationToken);
     }
 }

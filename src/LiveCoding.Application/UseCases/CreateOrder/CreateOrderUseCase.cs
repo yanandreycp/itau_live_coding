@@ -1,12 +1,12 @@
-﻿using LiveCoding.Application.Repositories;
+﻿using LiveCoding.Application.Interfaces;
 
 namespace LiveCoding.Application.UseCases.CreateOrder
 {
-    public class CreateOrderUseCase(IOrderRepository orderRepository) : ICreateOrderUseCase
+    public class CreateOrderUseCase(IOrderService orderService) : ICreateOrderUseCase
     {
-        public async Task<CreateOrderOutput> CreateOrderAsync(CreateOrderInput input, CancellationToken cancellation)
+        public async Task<CreateOrderOutput> ExecuteAsync(CreateOrderInput input, CancellationToken cancellationToken)
         {
-            return await orderRepository.CreateOrderAsync(input, cancellation);
+            return await orderService.CreateOrderAsync(input, cancellationToken);
         }
     }
 }

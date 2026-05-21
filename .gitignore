@@ -3,6 +3,10 @@
 ############################################
 [Bb]in/
 [Oo]bj/
+[Bb]in/**/*.dll
+[Oo]bj/**/*.dll
+[Tt]ests/**/[Bb]in/**/*.dll
+[Tt]ests/**/[Oo]bj/**/*.dll
 [Dd]ebug/
 [Rr]elease/
 x64/

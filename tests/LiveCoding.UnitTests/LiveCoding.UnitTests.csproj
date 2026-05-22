@@ -24,4 +24,11 @@
   	</PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="UseCases\" />
+  </ItemGroup>
+
 </Project>

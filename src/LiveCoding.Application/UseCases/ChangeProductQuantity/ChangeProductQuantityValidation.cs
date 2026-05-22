@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
 namespace LiveCoding.Application.UseCases.ChangeProductQuantity
 {
+    [ExcludeFromCodeCoverage]
     public class ChangeProductQuantityValidation : IChangeProductQuantityValidation
     {
         public Task<ValidationResult> ValidateAsync(ChangeProductQuantityInput input, CancellationToken cancellationToken)

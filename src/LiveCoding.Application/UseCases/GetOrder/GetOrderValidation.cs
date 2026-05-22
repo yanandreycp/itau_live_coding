@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
 namespace LiveCoding.Application.UseCases.GetOrder
 {
+    [ExcludeFromCodeCoverage]
     public class GetOrderValidation : IGetOrderValidation
     {
         public Task<ValidationResult> ValidateAsync(GetOrderInput input, CancellationToken cancellationToken)

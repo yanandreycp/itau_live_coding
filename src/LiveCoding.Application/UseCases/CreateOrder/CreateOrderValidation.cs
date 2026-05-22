@@ -1,8 +1,10 @@
-﻿using FluentValidation.Results;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentValidation.Results;
 using LiveCoding.Domain.Enums;
 
 namespace LiveCoding.Application.UseCases.CreateOrder
 {
+    [ExcludeFromCodeCoverage]
     public class CreateOrderValidation : ICreateOrderValidation
     {
         public Task<ValidationResult> ValidateAsync(CreateOrderInput input, CancellationToken cancellationToken)

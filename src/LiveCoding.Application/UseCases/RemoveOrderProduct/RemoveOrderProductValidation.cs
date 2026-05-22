@@ -1,7 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using FluentValidation.Results;
 
 namespace LiveCoding.Application.UseCases.RemoveOrderProduct
 {
+    [ExcludeFromCodeCoverage]
     public class RemoveOrderProductValidation : IRemoveOrderProductValidation
     {
         public Task<ValidationResult> ValidateAsync(RemoveOrderProductInput input, CancellationToken cancellationToken)

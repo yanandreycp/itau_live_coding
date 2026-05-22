@@ -3,10 +3,17 @@ using LiveCoding.Application.Interfaces;
 
 namespace LiveCoding.Application.UseCases.ChangeProductQuantity
 {
-    public class ChangeProductQuantityUseCase(IOrderService orderService) : IChangeProductQuantityUseCase
+    public class ChangeProductQuantityUseCase(IOrderService orderService, IChangeProductQuantityValidation validation) : IChangeProductQuantityUseCase
     {
         public async Task<Response<ChangeProductQuantityOutput>> ExecuteAsync(ChangeProductQuantityInput input, CancellationToken cancellationToken)
         {
+            var validationResult = await validation.ValidateAsync(input, cancellationToken);
+            if (!validationResult.IsValid)
+            {
+                return new Response<ChangeProductQuantityOutput>(false)
+                    .AddError(string.Join("; ", validationResult.Errors.Select(e => e.ErrorMessage)));
+            }
+
             try
             {
                 var response = await orderService.ChangeProductQuantityAsync(input, cancellationToken);

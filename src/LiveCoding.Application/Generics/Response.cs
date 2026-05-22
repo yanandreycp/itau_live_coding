@@ -4,15 +4,15 @@
     {
         public Response()
         {
-
+            Errors = new List<string>();
         }
 
-        public Response(bool isSuccess)
+        public Response(bool isSuccess) : this()
         {
             IsSuccess = isSuccess;
         }
 
-        public Response(bool isSuccess, T content)
+        public Response(bool isSuccess, T content) : this()
         {
             IsSuccess = isSuccess;
             Content = content;
@@ -27,6 +27,15 @@
             if (!string.IsNullOrEmpty(error))
             {
                 Errors.Add(error);
+            }
+            return this;
+        }
+
+        public Response<T> AddErrors(List<string> errors)
+        {
+            if (errors.Any())
+            {
+                Errors = errors;
             }
             return this;
         }

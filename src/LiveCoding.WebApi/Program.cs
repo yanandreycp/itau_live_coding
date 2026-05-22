@@ -1,5 +1,5 @@
-using LiveCoding.Application.DependencyInjection;
-using LiveCoding.Infrastructure.DependencyInjection;
+using LiveCoding.Application.Extensions.DependencyInjection;
+using LiveCoding.Infrastructure.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddApplicationServices();
-builder.Services.AddDbContext();
+builder.Services.AddApplicationExtensions();
+builder.Services.AddInfrastructureExtensions();
 
 
 var app = builder.Build();

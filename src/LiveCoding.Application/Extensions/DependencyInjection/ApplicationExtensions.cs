@@ -8,19 +8,30 @@ using LiveCoding.Infrastructure.Interfaces;
 using LiveCoding.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LiveCoding.Application.DependencyInjection
+namespace LiveCoding.Application.Extensions.DependencyInjection
 {
     public static class ApplicationExtensions
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationExtensions(this IServiceCollection services)
         {
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-
+            // Use Cases
             services.AddScoped<IGetOrderUseCase, GetOrderUseCase>();
             services.AddScoped<ICreateOrderUseCase, CreateOrderUseCase>();
             services.AddScoped<IChangeProductQuantityUseCase, ChangeProductQuantityUseCase>();
             services.AddScoped<IRemoveOrderProductUseCase, RemoveOrderProductUseCase>();
+
+            // Validations
+            services.AddScoped<IGetOrderValidation, GetOrderValidation>();
+            services.AddScoped<ICreateOrderValidation, CreateOrderValidation>();
+            services.AddScoped<IChangeProductQuantityValidation, ChangeProductQuantityValidation>();
+            services.AddScoped<IRemoveOrderProductValidation, RemoveOrderProductValidation>();
+
+            // Services
+            services.AddScoped<IOrderService, OrderService>();
+
+            // Repositories
+            services.AddScoped<IOrderRepository, OrderRepository>();
+
             return services;
         }
     }

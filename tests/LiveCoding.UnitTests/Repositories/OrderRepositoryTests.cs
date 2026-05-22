@@ -5,6 +5,7 @@ using LiveCoding.Infrastructure.Repositories;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
+using Xunit;
 
 namespace LiveCoding.UnitTests.Repositories;
 

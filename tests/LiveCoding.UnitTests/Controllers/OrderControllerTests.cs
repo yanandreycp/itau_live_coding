@@ -6,6 +6,7 @@ using LiveCoding.Application.UseCases.RemoveOrderProduct;
 using LiveCoding.WebApi.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using Xunit;
 
 namespace LiveCoding.UnitTests.Controllers;
 

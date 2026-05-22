@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using LiveCoding.Domain.Enums;
+using System.Diagnostics.CodeAnalysis;
 
 namespace LiveCoding.Application.UseCases.CreateOrder
 {

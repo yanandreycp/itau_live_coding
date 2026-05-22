@@ -5,8 +5,9 @@ using LiveCoding.Application.UseCases.RemoveOrderProduct;
 using LiveCoding.Domain.Enums;
 using System.Net;
 using System.Net.Http.Json;
+using Xunit;
 
-namespace LiveCoding.FunctionalTests;
+namespace LiveCoding.FunctionalTests.Features.Order;
 
 public class OrderFunctionalTests : IClassFixture<OrderFunctionalTestFixture>
 {

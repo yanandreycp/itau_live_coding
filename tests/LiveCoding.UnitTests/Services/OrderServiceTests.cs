@@ -6,6 +6,7 @@ using LiveCoding.Domain.Entities;
 using LiveCoding.Domain.Enums;
 using LiveCoding.Infrastructure.Interfaces;
 using Moq;
+using Xunit;
 
 namespace LiveCoding.UnitTests.Services;
 

@@ -1,6 +1,8 @@
 using System.Text.Json;
+using System.Text.Json.Serialization;
+using Xunit;
 
-namespace LiveCoding.FunctionalTests;
+namespace LiveCoding.FunctionalTests.Features.Order;
 
 public class OrderFunctionalTestFixture : IAsyncLifetime
 {
@@ -8,7 +10,8 @@ public class OrderFunctionalTestFixture : IAsyncLifetime
     public HttpClient Client { get; }
     public static readonly JsonSerializerOptions JsonOptions = new()
     {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        Converters = { new JsonStringEnumConverter() }
     };
 
     public OrderFunctionalTestFixture()

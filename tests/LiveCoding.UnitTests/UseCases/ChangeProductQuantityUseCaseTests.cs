@@ -3,6 +3,7 @@ using LiveCoding.Application.Generics;
 using LiveCoding.Application.Interfaces;
 using LiveCoding.Application.UseCases.ChangeProductQuantity;
 using Moq;
+using Xunit;
 
 namespace LiveCoding.UnitTests.UseCases;
 

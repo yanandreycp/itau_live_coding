@@ -2,6 +2,7 @@ using FluentValidation.Results;
 using LiveCoding.Application.Generics;
 using LiveCoding.Application.Interfaces;
 using LiveCoding.Application.UseCases.ChangeProductQuantity;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -18,7 +19,7 @@ public class ChangeProductQuantityUseCaseTests
         validationMock
             .Setup(v => v.ValidateAsync(It.IsAny<ChangeProductQuantityInput>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
-        _useCase = new ChangeProductQuantityUseCase(_serviceMock.Object, validationMock.Object);
+        _useCase = new ChangeProductQuantityUseCase(_serviceMock.Object, validationMock.Object, Mock.Of<ILogger<ChangeProductQuantityUseCase>>());
     }
 
     [Fact]
@@ -28,7 +29,7 @@ public class ChangeProductQuantityUseCaseTests
         validationMock
             .Setup(v => v.ValidateAsync(It.IsAny<ChangeProductQuantityInput>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult(new[] { new ValidationFailure("Quantity", "error") }));
-        var useCase = new ChangeProductQuantityUseCase(_serviceMock.Object, validationMock.Object);
+        var useCase = new ChangeProductQuantityUseCase(_serviceMock.Object, validationMock.Object, Mock.Of<ILogger<ChangeProductQuantityUseCase>>());
 
         var result = await useCase.ExecuteAsync(new ChangeProductQuantityInput(Guid.NewGuid(), Guid.NewGuid()), CancellationToken.None);
 

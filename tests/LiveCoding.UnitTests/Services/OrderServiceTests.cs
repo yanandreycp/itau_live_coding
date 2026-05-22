@@ -5,6 +5,7 @@ using LiveCoding.Application.UseCases.RemoveOrderProduct;
 using LiveCoding.Domain.Entities;
 using LiveCoding.Domain.Enums;
 using LiveCoding.Infrastructure.Interfaces;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -17,7 +18,7 @@ public class OrderServiceTests
 
     public OrderServiceTests()
     {
-        _service = new OrderService(_repositoryMock.Object);
+        _service = new OrderService(_repositoryMock.Object, Mock.Of<ILogger<OrderService>>());
     }
 
     [Fact]

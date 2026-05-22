@@ -2,6 +2,7 @@ using FluentValidation.Results;
 using LiveCoding.Application.Generics;
 using LiveCoding.Application.Interfaces;
 using LiveCoding.Application.UseCases.GetOrder;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -18,7 +19,7 @@ public class GetOrderUseCaseTests
         validationMock
             .Setup(v => v.ValidateAsync(It.IsAny<GetOrderInput>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
-        _useCase = new GetOrderUseCase(_serviceMock.Object, validationMock.Object);
+        _useCase = new GetOrderUseCase(_serviceMock.Object, validationMock.Object, Mock.Of<ILogger<GetOrderUseCase>>());
     }
 
     [Fact]
@@ -28,7 +29,7 @@ public class GetOrderUseCaseTests
         validationMock
             .Setup(v => v.ValidateAsync(It.IsAny<GetOrderInput>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult(new[] { new ValidationFailure("Id", "error") }));
-        var useCase = new GetOrderUseCase(_serviceMock.Object, validationMock.Object);
+        var useCase = new GetOrderUseCase(_serviceMock.Object, validationMock.Object, Mock.Of<ILogger<GetOrderUseCase>>());
 
         var result = await useCase.ExecuteAsync(new GetOrderInput(), CancellationToken.None);
 

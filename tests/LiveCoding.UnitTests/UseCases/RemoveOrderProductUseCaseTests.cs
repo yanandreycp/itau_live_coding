@@ -2,6 +2,7 @@ using FluentValidation.Results;
 using LiveCoding.Application.Generics;
 using LiveCoding.Application.Interfaces;
 using LiveCoding.Application.UseCases.RemoveOrderProduct;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -18,7 +19,7 @@ public class RemoveOrderProductUseCaseTests
         validationMock
             .Setup(v => v.ValidateAsync(It.IsAny<RemoveOrderProductInput>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult());
-        _useCase = new RemoveOrderProductUseCase(_serviceMock.Object, validationMock.Object);
+        _useCase = new RemoveOrderProductUseCase(_serviceMock.Object, validationMock.Object, Mock.Of<ILogger<RemoveOrderProductUseCase>>());
     }
 
     [Fact]
@@ -28,7 +29,7 @@ public class RemoveOrderProductUseCaseTests
         validationMock
             .Setup(v => v.ValidateAsync(It.IsAny<RemoveOrderProductInput>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new ValidationResult(new[] { new ValidationFailure("OrderId", "error") }));
-        var useCase = new RemoveOrderProductUseCase(_serviceMock.Object, validationMock.Object);
+        var useCase = new RemoveOrderProductUseCase(_serviceMock.Object, validationMock.Object, Mock.Of<ILogger<RemoveOrderProductUseCase>>());
 
         var result = await useCase.ExecuteAsync(new RemoveOrderProductInput(Guid.NewGuid(), Guid.NewGuid()), CancellationToken.None);
 

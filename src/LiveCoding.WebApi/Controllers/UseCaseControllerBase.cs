@@ -18,7 +18,15 @@ namespace LiveCoding.WebApi.Controllers
             }
             else
             {
-                return BadRequest(response.Errors);
+                var problemDetails = new ProblemDetails
+                {
+                    Type = "https://httpstatuses.io/400",
+                    Title = "Bad Request",
+                    Status = StatusCodes.Status400BadRequest,
+                    Detail = "One or more validation errors occurred.",
+                    Extensions = { { "errors", response.Errors } }
+                };
+                return BadRequest(problemDetails);
             }
         }
     }

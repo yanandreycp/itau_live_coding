@@ -33,9 +33,9 @@
 
         public Response<T> AddErrors(List<string> errors)
         {
-            if (errors.Any())
+            if (errors?.Count > 0)
             {
-                Errors = errors;
+                Errors.AddRange(errors);
             }
             return this;
         }

@@ -266,11 +266,11 @@ public class OrderFunctionalTests : IClassFixture<OrderFunctionalTestFixture>
     }
 
     [Fact]
-    public async Task RemoveOrderProduct_WithNonExistentOrder_ReturnsNoContent()
+    public async Task RemoveOrderProduct_WithNonExistentOrder_ReturnsBadRequest()
     {
         var deleteResponse = await _client.DeleteAsync($"orders/{Guid.NewGuid()}/items/{Guid.NewGuid()}");
 
-        Assert.Equal(HttpStatusCode.NoContent, deleteResponse.StatusCode);
+        Assert.Equal(HttpStatusCode.BadRequest, deleteResponse.StatusCode);
     }
 
     [Fact]

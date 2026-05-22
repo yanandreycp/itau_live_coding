@@ -7,5 +7,6 @@
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/LiveCoding.UnitTests/LiveCoding.UnitTests.csproj" Id="de63e3db-ba74-40a4-94c8-62ee4322b27e" />
+    <Project Path="tests/LiveCoding.FunctionalTests/LiveCoding.FunctionalTests.csproj" Id="c3a8f7e2-5d4b-4e6f-9a1c-8b2d3f5e7a9b" />
   </Folder>
 </Solution>

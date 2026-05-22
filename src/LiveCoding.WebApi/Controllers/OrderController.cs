@@ -14,6 +14,9 @@ namespace LiveCoding.WebApi.Controllers
     {
 
         [HttpGet("orders/{id}")]
+        [ProducesResponseType<GetOrderOutput>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType<IEnumerable<string>>(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetOrder([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var input = new GetOrderInput { Id = id };
@@ -22,6 +25,8 @@ namespace LiveCoding.WebApi.Controllers
         }
 
         [HttpPost("orders")]
+        [ProducesResponseType<CreateOrderOutput>(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<string>>(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderInput input, CancellationToken cancellationToken)
         {
             var response = await createOrderUseCase.ExecuteAsync(input, cancellationToken);
@@ -29,6 +34,8 @@ namespace LiveCoding.WebApi.Controllers
         }
 
         [HttpPut("orders/{orderId}/items/{itemId}")]
+        [ProducesResponseType<ChangeProductQuantityOutput>(StatusCodes.Status200OK)]
+        [ProducesResponseType<IEnumerable<string>>(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ChangeProductQuantity(
             [FromRoute] Guid orderId,
             [FromRoute] Guid itemId,
@@ -44,6 +51,9 @@ namespace LiveCoding.WebApi.Controllers
         }
 
         [HttpDelete("orders/{orderId}/items/{itemId}")]
+        [ProducesResponseType<RemoveOrderProductOutput>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType<IEnumerable<string>>(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> RemoveOrderProduct(
             [FromRoute] Guid orderId,
             [FromRoute] Guid itemId,

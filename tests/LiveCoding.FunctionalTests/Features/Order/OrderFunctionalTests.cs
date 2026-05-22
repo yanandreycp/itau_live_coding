@@ -298,7 +298,7 @@ public class OrderFunctionalTests : IClassFixture<OrderFunctionalTestFixture>
             $"orders/{created.Id}/items/{itemA.Id}", changeInput, OrderFunctionalTestFixture.JsonOptions);
         var changed = await putResponse.Content.ReadFromJsonAsync<ChangeProductQuantityOutput>(OrderFunctionalTestFixture.JsonOptions);
         Assert.NotNull(changed);
-        Assert.Equal(5, changed.Products[0].Quantity);
+        Assert.Equal(5, changed.Products.First(p => p.Id == itemA.Id).Quantity);
         Assert.Equal(650m, changed.InitialPrice);
         Assert.Equal(650m, changed.EffectivePrice);
 

@@ -13,7 +13,7 @@ namespace LiveCoding.Application.Extensions.Mapping
             return new GetOrderOutput
             {
                 Id = order.Id,
-                Products = order.Products.Select(p => new GetOrderProductOutput
+                Products = (order.Products ?? []).Select(p => new GetOrderProductOutput
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -37,7 +37,7 @@ namespace LiveCoding.Application.Extensions.Mapping
             return new CreateOrderOutput
             {
                 Id = order.Id,
-                Products = order.Products.Select(p => new CreateOrderProductOutput
+                Products = (order.Products ?? []).Select(p => new CreateOrderProductOutput
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -60,7 +60,7 @@ namespace LiveCoding.Application.Extensions.Mapping
             return new ChangeProductQuantityOutput
             {
                 Id = order.Id,
-                Products = order.Products.Select(p => new ChangeProductQuantityProductOutput
+                Products = (order.Products ?? []).Select(p => new ChangeProductQuantityProductOutput
                 {
                     Id = p.Id,
                     Name = p.Name,
@@ -84,7 +84,7 @@ namespace LiveCoding.Application.Extensions.Mapping
             return new RemoveOrderProductOutput
             {
                 Id = order.Id,
-                Products = order.Products.Select(p => new RemoveOrderProductProductOutput
+                Products = (order.Products ?? []).Select(p => new RemoveOrderProductProductOutput
                 {
                     Id = p.Id,
                     Name = p.Name,

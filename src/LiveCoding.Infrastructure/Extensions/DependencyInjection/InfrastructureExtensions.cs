@@ -1,4 +1,5 @@
 ﻿using LiveCoding.Infrastructure.Persistence;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,13 +9,12 @@ namespace LiveCoding.Infrastructure.Extensions.DependencyInjection
     {
         public static IServiceCollection AddInfrastructureExtensions(this IServiceCollection services)
         {
-            // Db Context
-            var connection = new Microsoft.Data.Sqlite.SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
-            connection.Open();
-            services.AddSingleton(connection);
-
             services.AddDbContext<OrderDbContext>((provider, options) =>
-                options.UseSqlite(connection).EnableSensitiveDataLogging());
+            {
+                var connection = new SqliteConnection("Data Source=file:memdb1?mode=memory&cache=shared");
+                connection.Open();
+                options.UseSqlite(connection);
+            });
 
             return services;
         }

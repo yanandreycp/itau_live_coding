@@ -21,6 +21,8 @@ namespace LiveCoding.Application.UseCases.CreateOrder
                 {
                     if (string.IsNullOrWhiteSpace(product.Name))
                         errors.Add(new ValidationFailure($"Products[{i}].Name", "Product name is required"));
+                    else if (product.Name.Length > 100)
+                        errors.Add(new ValidationFailure($"Products[{i}].Name", "Product name must be at most 100 characters"));
 
                     if (product.Quantity <= 0)
                         errors.Add(new ValidationFailure($"Products[{i}].Quantity", "Quantity must be greater than zero"));

@@ -36,6 +36,10 @@ API REST para gerenciamento de pedidos com cálculo de preços baseado no tipo d
 | `orderId` | `guid` | ID do pedido (apenas em parâmetro de rota) |
 | `itemId` | `guid` | ID do produto dentro do pedido (apenas em parâmetro de rota) |
 
+### Sem Catálogo de Produtos
+
+Essa aplicação não possui um sistema de estoque. Na criação do pedido, não é feita nenhuma validação sobre a existência do produto ou a disponibilidade da quantidade informada — qualquer nome de produto é aceito e armazenado como um novo item vinculado ao pedido. A opção por não incluir um módulo de inventário foi proposital para manter o foco no fluxo de pedidos e no cálculo de preços.
+
 ---
 
 ## POST /orders
